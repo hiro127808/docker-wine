@@ -1,0 +1,49 @@
+version: "3.9"
+
+x-gpu_resources: &gpu_resources
+  deploy:
+    resources:
+      reservations:
+        devices:
+          - capabilities: ["gpu"]
+            driver: nvidia
+            count: all
+
+x-common_volumes: &common_volumes
+  volumes:
+    - ${_DIR_CACHE}:/tmp/.cache:rw
+    - ${_DIR_SHARE}:/SHARED:rw
+    - /etc/localtime:/etc/localtime:ro
+    - /tmp/.X11-unix:/tmp/.X11-unix:rw
+
+x-common_environment: &common_environment
+  environment:
+    - DISPLAY=$DISPLAY
+    - XDG_RUNTIME_DIR=/tmp/.cache
+
+x-common_settings: &common_settings
+  privileged: true
+  tty: true
+  network_mode: host
+
+x-common_entrypoint: &common_entrypoint
+  entrypoint: "/tmp/EntryPoint.sh"
+
+x-common_config: &common_config
+  <<:
+    - *gpu_resources
+    - *common_volumes
+    - *common_environment
+    - *common_settings
+    - *common_entrypoint
+
+services:
+
+  s_wine:
+    container_name: c_wine
+    image: i_wine:latest
+    build:
+      context: ./wine
+      dockerfile: Dockerfile
+    <<:
+      - *common_config
