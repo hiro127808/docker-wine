@@ -69,3 +69,9 @@ RUN mv NotoSerifCJKjp /usr/share/fonts/opentype/
 COPY ./wine-japanese.reg /tmp/.
 RUN regedit wine-japanese.reg
 COPY ./EntryPoint.sh /tmp/.
+
+WORKDIR /tmp
+RUN ln -s /root/.wine/drive_c/ /drive_c
+RUN ln -s "/root/.wine/drive_c/Program Files (x86)" /program_file
+# unzip -O CP932 hoge.zip
+
