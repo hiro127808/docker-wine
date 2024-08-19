@@ -49,6 +49,3 @@ NVIDIA GeForce RTX 4070 Ti
 
 32G
 
-### LICENSE
-
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fhiro127808%2Fdocker-wine.svg?type=shield&issueType=license)](https://app.fossa.com/projects/git%2Bgithub.com%2Fhiro127808%2Fdocker-wine?ref=badge_shield&issueType=license)
