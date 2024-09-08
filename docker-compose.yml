@@ -12,7 +12,8 @@ x-gpu_resources: &gpu_resources
 x-common_volumes: &common_volumes
   volumes:
     - ${_DIR_CACHE}:/tmp/.cache:rw
-    - ${_DIR_SHARE}:/SHARED:rw
+    - ${_DIR_SHARE}:/tmp/.SHARED:rw
+    - "${_DIR_PRGRM}:/root/.wine/drive_c/Program Files (x86):rw"
     - /etc/localtime:/etc/localtime:ro
     - /tmp/.X11-unix:/tmp/.X11-unix:rw
 
