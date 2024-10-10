@@ -16,11 +16,14 @@ x-common_volumes: &common_volumes
     - "${_DIR_PRGRM}:/root/.wine/drive_c/Program Files (x86):rw"
     - /etc/localtime:/etc/localtime:ro
     - /tmp/.X11-unix:/tmp/.X11-unix:rw
+    - /run/user/1000/pulse/native:/tmp/pulse/native:rw
 
 x-common_environment: &common_environment
   environment:
     - DISPLAY=$DISPLAY
     - XDG_RUNTIME_DIR=/tmp/.cache
+    - PULSE_COOKIE=/tmp/pulse/cookie
+    - PULSE_SERVER=unix:/tmp/pulse/native
 
 x-common_settings: &common_settings
   privileged: true
@@ -43,6 +46,7 @@ services:
   s_wine:
     container_name: c_wine
     image: i_wine:latest
+    user: "${UID}" 
     build:
       context: ./wine
       dockerfile: Dockerfile

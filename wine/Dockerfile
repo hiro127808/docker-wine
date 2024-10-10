@@ -43,11 +43,11 @@ RUN sed -i 's/^#ja_JP.UTF-8 UTF-8/ja_JP.UTF-8 UTF-8/' /etc/locale.gen
 RUN locale-gen
 RUN echo LANG=ja_JP.UTF-8 > ~/.bashrc
 
-WORKDIR /tmp
-RUN wget https://ja.osdn.net/projects/ume-font/downloads/22212/umefont_670.tar.xz
-RUN tar Jxfv umefont_670.tar.xz
-RUN rm umefont_670.tar.xz
-RUN mv umefont_670 /usr/share/fonts/truetype/
+# WORKDIR /tmp
+# RUN wget https://ja.osdn.net/projects/ume-font/downloads/22212/umefont_670.tar.xz
+# RUN tar Jxfv umefont_670.tar.xz
+# RUN rm umefont_670.tar.xz
+# RUN mv umefont_670 /usr/share/fonts/truetype/
 
 RUN mkdir NotoSansCJKjp
 WORKDIR /tmp/NotoSansCJKjp
